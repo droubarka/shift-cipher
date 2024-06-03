@@ -40,6 +40,26 @@ def shift_bytes(data: bytes, shift: int, reverse: bool = False) -> bytes:
 	return shifted_data
 
 
+def shift_bytes_by_table(data: bytes, table: bytes, shift: int, reverse: bool = False) -> bytes:
+	"""
+	Shifts each byte in the data according to a custom table.
+
+	Args:
+		data: A byte string containing the data to be shifted.
+		table: A byte string containing the table of bytes for shifting.
+		shift: An integer representing the number of positions shift.
+		reverse: A boolean flag indicating whether to shift in reverse direction.
+
+	Returns:
+		The shifted byte string.
+	"""
+	shift = -shift if reverse else shift
+	shifted_data = bytes( \
+		table[(table.index(byte) + shift) % len(table)] for byte in data)
+
+	return shifted_data
+
+
 def shift_alpha(data: str, shift: int, reverse: bool = False) -> str:
 	"""
 	Shifts alphabetic characters in the given string by the specified number of positions.
