@@ -1,5 +1,54 @@
 # /shiftcipher/shiftcipher.py
 
+import string
+
+def shift_alpha(data: str, shift: int, reverse: bool = False) -> str:
+	"""
+	Shifts alphabetic characters in the given string by the specified number of positions.
+
+	Args:
+		data: A string to be shifted.
+		shift: An integer representing the number of positions shift.
+		reverse: A boolean flag indicating whether to shift in reverse direction.
+
+	Returns:
+		The shifted string.
+	"""
+	alpha = string.ascii_lowercase
+	shift = -shift if reverse else shift
+	shifted_data = ""
+
+	for char in data:
+		# The reason why `char.isalpha()` is not used in the code is that it
+		# would also return `True` for non-ASCII alphabetic characters, such as
+		# accented letters and letters from non-Latin scripts.
+		if char.lower() in alpha:
+			shifted_data += alpha[(alpha.index(char.lower()) + shift) % 26]
+			if char.isupper():
+				shifted_data = shifted_data[:-1] + shifted_data[-1].upper()
+		else:
+			shifted_data += char
+
+	return shifted_data
+
+
+def caesar(data: str, reverse: bool = False) -> str:
+	"""
+	Applies a Caesar shift of 3 position to the given data.
+
+	Args:
+		data: A string to be shifted.
+		reverse: A boolean flag indicating whether to shift in reverse direction.
+
+	Returns:
+		The shifted string.
+	"""
+	shift = 3
+	shifted_data = shift_alpha(data, shift, reverse)
+
+	return shifted_data
+
+
 def shift_bytes(data: bytes, shift: int, reverse: bool = False) -> bytes:
 	"""
 	Shifts each byte in the given byte string by the specified number of positions.
