@@ -1,4 +1,4 @@
-![Status: In Development](https://img.shields.io/badge/Status-In%20Development-blue)
+[![Status: In Development](https://img.shields.io/badge/Status-In%20Development-blue)]()
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # Shift-Cipher
@@ -19,7 +19,7 @@ python3 -m pip install .
 
 Or you can use the following command instead:
 ```shell
-pip install git+https://github.com/droubarka/shift-cipher.git
+python -m pip install git+https://github.com/droubarka/shift-cipher.git
 ```
 
 ## Usage
