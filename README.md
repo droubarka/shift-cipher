@@ -9,24 +9,40 @@ The encryption formula is `E_n(x) = (x + n) mod 26`, where **x** is the plaintex
 
 The decryption formula is `D_n(x) = (x - n) mod 26`, which is the inverse of the encryption formula.
 
-# Install
+## Installation
+You can install the package by cloning the repository then using pip:
 ```shell
-
+git clone https://github.com/droubarka/shift-cipher.git
+cd shift-cipher
+python3 -m pip install .
 ```
 
-# Usage
-```python
-from shiftcipher import shiftcipher
+Or you can use the following command instead:
+```shell
+pip install git+https://github.com/droubarka/shift-cipher.git
+```
 
-data = b'hello, world!'
+## Usage
+As a simple usage:
+```python3
+from shiftcipher import shift_alpha
+
+message = "Hello, World!"
 shift = 32
 
-ciphertext = shiftcipher.shift_bytes(data, shift)
-plaintext  = shiftcipher.shift_bytes(ciphertext, shift, reverse=True)
+encrypted_message = shift_alpha(message, shift)
+decrypted_message = shift_alpha(encrypted_message, shift, reverse=True)
+
+print(encrypted_message) # Output: "Nkrru, Cuxrj!"
+print(decrypted_message) # Output: "Hello, World!"
 ```
-```
-ciphertext -> b'\x88\x85\x8c\x8c\x8fL@\x97\x8f\x92\x8c\x84A'
-plaintext  -> b'hello, world!'
-```
+
+## Contributing
+Contributions are welcome!
+If you'd like to contribute to the shift-cipher implementation,
+please fork the repository and submit a pull request.
+
+## License
+The shift-cipher implementation is released under the MIT License.
 
 [![Buy me a coffee!](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/droubarka)
