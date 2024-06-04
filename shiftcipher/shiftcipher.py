@@ -1,4 +1,5 @@
-# /shiftcipher/shiftcipher.py
+# Copyright (c) 2024 Mohamed A. Oubarka
+# Licensed under the MIT License (see LICENSE file for details)
 
 import string
 
