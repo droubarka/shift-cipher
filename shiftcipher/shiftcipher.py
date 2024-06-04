@@ -90,6 +90,26 @@ def shift_alpha(data: str, shift: int, reverse: bool = False) -> str:
 	return shifted_data
 
 
+def shift_alpha_by_table(data: str, table: str, shift: int, reverse: bool = False) -> str:
+	"""
+	Shifts alphabetic characters in the given string according to a custom table.
+
+	Args:
+		data: A string to be shifted.
+		table: A string containing the table for shifting.
+		shift: An integer representing the number of positions shift.
+		reverse: A boolean flag indicating whether to shift in reverse direction.
+
+	Returns:
+		The shifted string.
+	"""
+	shift = -shift if reverse else shift
+	shifted_data = ''.join( \
+		table[(table.index(char) + shift) % len(table)] for char in data)
+
+	return shifted_data
+
+
 def caesar(data: str, reverse: bool = False) -> str:
 	"""
 	Applies a Caesar shift of 3 position to the given data.
