@@ -19,11 +19,11 @@ python3 -m pip install .
 
 Or you can use the following command instead:
 ```shell
-python -m pip install git+https://github.com/droubarka/shift-cipher.git
+python3 -m pip install git+https://github.com/droubarka/shift-cipher.git
 ```
 
 ## Usage
-As a simple usage:
+Use the **shift_alpha** function to shift alphabetic characters:
 ```python3
 from shiftcipher import shift_alpha
 
@@ -35,6 +35,39 @@ decrypted_message = shift_alpha(encrypted_message, shift, reverse=True)
 
 print(encrypted_message) # Output: "Nkrru, Cuxrj!"
 print(decrypted_message) # Output: "Hello, World!"
+```
+Use the **shift_bytes** function to applies a byte-level shift:
+```python3
+from shiftcipher import shift_bytes
+
+message = b"Hello, World!"
+shift = 128
+
+encrypted_message = shift_bytes(message, shift)
+decrypted_message = shift_bytes(encrypted_message, shift, reverse=True)
+
+print(encrypted_message) # Output: b'\xc8\xe5\xec\xec\xef\xac\xa0\xd7\xef\xf2\xec\xe4\xa1'
+print(decrypted_message) # Output: b"Hello, World!"
+```
+Use the **global_shift** function to shift different element types:
+```python3
+from shiftcipher import global_shift
+
+data = ['localhost', b'X', True, False, None, 1000]
+table = [
+	'127.0.0.1', 'localhost',
+	'0x58', b'X',
+	'true', True,
+	'false', False,
+	'null', None,
+	'1e+3', 1000]
+shift = -1
+
+encrypted_data = global_shift(data, table, shift)
+decrypted_data = global_shift(encrypted_data, table, shift, reverse=True)
+
+print(encrypted_data) # Output: ['127.0.0.1', '0x58', 'true', 'false', 'null', '1e+3']
+print(decrypted_data) # Output: ['localhost',  b'X',   True,   False,   None,   1000 ]
 ```
 
 ## Contributing
